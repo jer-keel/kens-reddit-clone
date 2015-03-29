@@ -1,0 +1,78 @@
+@import "partials/reset";
+@import "modules/colors";
+@import "modules/fonts";
+
+h1 {
+  font-size: 40px;
+}
+
+h3 {
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.page-wrapper {
+  margin:auto;
+  width: 70%;
+  font-family: $font-stack;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+header {
+  text-align: center;
+}
+
+.main {
+  display: inline-block;
+  width: 79%;
+}
+
+.sidebar {
+  display: inline-block;
+  width: 20%;
+  vertical-align: top;
+}
+
+p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 110%;
+  padding: 5px;
+}
+
+footer {
+  text-align: center;
+  a {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+nav {
+  margin-top: 20px;
+  li {
+    margin-bottom: 20px;
+  }
+}
+
+body {
+  background-color: lavender;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  font-size: 30px;
+  border-radius: 5px;
+  background-color: $primary-color;
+  border: none;
+  color: white;
+  padding: 5px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $secondary-color;
+  }
+}
