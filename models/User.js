@@ -10,7 +10,18 @@ var userSchema = new Schema({
     unique: true
   },
   passwordHash: String,
-  salt: String
+  salt: String,
+  posts: [Number],
+  comments: [Number],
+  created: Date,
+  admin_on: [String],
+  member_of: [String]
 });
 
-module.exports = mongoose.model("User", userSchema);
+var User = mongoose.model("User", userSchema);
+
+User.findByGroup = function (groupName, cb) {
+  return this.model('User').find({ member_of: groupName}, cb);
+}
+
+module.exports = User;

@@ -1,0 +1,114 @@
+URL API
+
+Everything in /api. Assumed for brevity.
+
+READ THIS
+Params should be of the form /paramName/param
+ie. users/username/jimbob
+
+==========================================================
+                            GETS
+==========================================================
+
+                        IMPLEMENTED
+/g
+Returns a list of all groups
+
+/g/groupname/:groupname
+Returns the group with groupname
+
+/g/id/:id
+Returns group by id
+
+/m
+Returns all users
+
+/m/id/:id
+Returns user by id
+
+/m/username/:username
+Gets user by username
+
+/m/groupname/:groupname
+Gets users by groupname
+
+
+
+                          TO DO
+/c/userid/:userid
+Returns all comments of a given user
+
+/c/postid/:postid
+Returns all comments of a given post
+
+==========================================================
+                          POSTS
+==========================================================
+
+                        IMPLEMENTED
+
+                          TO DO
+/g/
+Creates a new group
+
+/g/groupName/
+Makes a new post in that group
+
+/g/groupName/postID/
+Makes a new comment in that post
+
+==========================================================
+                        DELETE
+==========================================================
+
+                        TO DO
+/g/groupName
+Deletes a group (authenticated)
+
+/m/userName
+Deletes a user (authenticated)
+
+==========================================================
+                        EDIT
+==========================================================
+
+
+To do: Editing, Format of JSON Objects
+
+Group {
+  name: name, 
+  sidebar_info: sidebar_info, 
+  users: [user_ids], 
+  admins: [user_ids], 
+  owner: user_id,
+  created: Date()
+}
+
+User {
+  username: username, 
+  posts: [post_ids], 
+  comments: [comment ids], 
+  password: hashed password, 
+  salt: salt, created: Date(), 
+  admin_on: [group_ids], 
+  member_of: [group_ids]
+}
+
+Post {
+  title: title, 
+  content: content, 
+  comments: [comment_ids], 
+  owner: user_id, 
+  upvotes: [user_ids], 
+  downvotes: [user_ids], 
+  created: Date()
+}
+
+Comment {
+  owner: user id, 
+  text: text, 
+  date: Date(), 
+  upvotes: upvotes, 
+  downvotes: downvotes, 
+  parent: comment_id
+}
