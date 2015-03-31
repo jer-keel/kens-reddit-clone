@@ -3,14 +3,6 @@ database. This is a simple example that can be switched out easily. */
 var mongoose = require("mongoose");
 var Schema =  mongoose.Schema;
 
-// Entire comments are stored with both posts and users
-// so we don't have to query the database a ton
-// May refactor later
-var commentSchema = new Schema({ 
-  post: Number,
-  text: String 
-});
-
 var userSchema = new Schema({
   username: {
     type: String,
@@ -20,7 +12,7 @@ var userSchema = new Schema({
   passwordHash: String,
   salt: String,
   posts: [String],
-  comments: [commentSchema],
+  comments: [String],
   created: Date,
   admin_on: [String],
   member_of: [String]

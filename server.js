@@ -62,7 +62,7 @@ passport.use(new GitHubStrategy({
 // configure Express and express middlewear
 app.use(express.static(__dirname + '/client'));
 app.set('views', __dirname + '/client/html');
-app.use(morgan("combined"));
+//app.use(morgan("combined"));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(methodOverride());
@@ -116,10 +116,18 @@ app.use("/", routes);
 app.use("/api", api);
 app.use("/auth", auth);
 
+
+app.use(function(err, req, res, next) {
+  if(err.status !== 404) {
+    return next();
+  }
+  res.status(404);
+  res.send(err.message || '** no unicorns here **');
+});
 // The last middle wear to use is the 404 middlewear. If they didn't get
 // anywhere show them the 404
 app.use(function(req, res){
-    res.sendStatus(404);
+  res.sendStatus(404);
 });
 
 // =============================================================================

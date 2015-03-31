@@ -7,6 +7,7 @@ var router = require("express").Router();
 var User = require("../models/User");
     Post = require("../models/Post");
     Group = require("../models/Group");
+    Comment = require("../models/Comment");
 
 // ==========================================================
 //                            GET
@@ -23,7 +24,7 @@ router.get("/m", function(req, res, next) {
 
 // GET /api/users/username/:username gets the requested user
 router.get("/m/username/:username", function(req, res, next) {
-  console.log(req.params);
+  //console.log(req.params);
   User.findOne({username: req.params.username}, function(err, user) {
     if (err) return next(err);
     res.json(user);
@@ -71,10 +72,21 @@ router.get("/g/id/:id", function(req, res, next) {
 });
 
 // Gets all comments for a given userid
+// If it doesn't find a user, passes along a 404
 router.get("/c/userid/:userid", function(req, res, next) {
+  var tempUser;
   User.findById(req.params.userid, function(err, user){
     if (err) return next(err);
-    res.json(user.comments);
+    if (!user) {
+      var noUser = new Error("No user at this UserID");
+      noUser.status = 404;
+      return next(noUser); // What do if no user?
+    }
+    Comment.findByIds(user.comments, function(err, comments){
+      if (err) return next(err);
+      res.json(comments);
+    });
+    //res.json(user.comments);
   });
 });
 
@@ -86,6 +98,8 @@ router.get("/c/postid/:postid", function(req, res, next) {
     res.json(post.comments);
   });
 });
+
+
 
 // ==========================================================
 //                          POST

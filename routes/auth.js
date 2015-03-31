@@ -21,7 +21,7 @@ router.get('/github/callback',
 router.get('/logout', function(req, res){
   console.log("Logout route");
   req.logout();
-  res.redirect('/fff');
+  res.redirect('/');
 });
 
 router.get('/a', function(req, res){
