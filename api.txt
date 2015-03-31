@@ -32,12 +32,10 @@ Gets user by username
 /m/groupname/:groupname
 Gets users by groupname
 
-
-
-                          TO DO
 /c/userid/:userid
 Returns all comments of a given user
 
+                          TO DO
 /c/postid/:postid
 Returns all comments of a given post
 

@@ -11,6 +11,7 @@ var User = require("../models/User");
 // ==========================================================
 //                            GET
 // ==========================================================
+
 // GET /api/user return all users
 // Note that this is probably not a good thing to call
 router.get("/m", function(req, res, next) {
@@ -66,6 +67,23 @@ router.get("/g/id/:id", function(req, res, next) {
   Group.findByGroup(req.params.id, function(err, group){
     if (err) return next(err);
     res.json(groups);
+  });
+});
+
+// Gets all comments for a given userid
+router.get("/c/userid/:userid", function(req, res, next) {
+  User.findById(req.params.userid, function(err, user){
+    if (err) return next(err);
+    res.json(user.comments);
+  });
+});
+
+// Gets all coments for a given post ID
+// Tested, not thoroughly
+router.get("/c/postid/:postid", function(req, res, next) {
+  Post.findById(req.params.postid, function(err, post){
+    if (err) return next(err);
+    res.json(post.comments);
   });
 });
 

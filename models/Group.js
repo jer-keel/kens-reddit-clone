@@ -8,12 +8,12 @@ var groupSchema = new Schema({
     type: String, 
     required: true,
     unique: true
-  }
+  },
   info: String, 
-  posts: [comment_ids], 
-  owner: user_id, 
-  upvotes: [user_ids], 
-  downvotes: [user_ids], 
+  posts: [String], 
+  owner: String, 
+  upvotes: [String], 
+  downvotes: [String], 
   created: Date
 });
 
@@ -23,4 +23,4 @@ Group.findByGroup = function (groupName, cb) {
   return this.model('User').find({ title: groupName}, cb);
 }
 
-module.exports = mongoose.model("Group", groupSchema);
+module.exports = Group;
