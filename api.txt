@@ -35,9 +35,10 @@ Gets users by groupname
 /c/userid/:userid
 Returns all comments of a given user
 
-                          TO DO
 /c/postid/:postid
 Returns all comments of a given post
+
+                          TO DO
 
 ==========================================================
                           POSTS
