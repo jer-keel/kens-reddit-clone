@@ -38,7 +38,17 @@ Returns all comments of a given user
 /c/postid/:postid
 Returns all comments of a given post
 
+/p
+Returns all posts
+
+/p/groupid/:groupid
+Returns all posts for a given group
+
+/p/userid/:userid
+Returns all posts for a given username
+
                           TO DO
+
 
 ==========================================================
                           POSTS

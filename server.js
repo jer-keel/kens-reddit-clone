@@ -84,24 +84,6 @@ app.use(passport.session());
 var dbConfig = require("./config/db.js");
 mongoose.connect(dbConfig.url);
 
-// Note here that because we call it user, 
-// mongo looks for a users collection automatically
-
-/*
-var jim = new User({username: "jimbob"});
-jim.save(function(err, saved){
-  if (err) {
-    console.log(err);
-  }
-  else {
-      console.log("Saved: " + saved.username);
-  }
-});
-User.find({ 'username': 'jimbob' }, function(err, doc){
-  console.log(doc);
-});
-*/
-
 
 // =============================================================================
 // ROUTES

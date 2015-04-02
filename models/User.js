@@ -20,8 +20,8 @@ var userSchema = new Schema({
 
 var User = mongoose.model("User", userSchema);
 
-User.findByGroup = function (groupName, cb) {
-  return this.model('User').find({ member_of: groupName}, cb);
+User.findByGroup = function (groupId, cb) {
+  return this.model('User').find({ member_of: groupId}, cb);
 }
 
 module.exports = User;

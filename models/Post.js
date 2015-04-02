@@ -4,7 +4,8 @@ var mongoose = require("mongoose");
 var Schema =  mongoose.Schema;
 
 var postSchema = new Schema({
-  title: String, 
+  title: String,
+  group: String, 
   sidebar_info: String, 
   comments: [String], 
   owner: String, 
@@ -13,4 +14,14 @@ var postSchema = new Schema({
   created: Date
 });
 
-module.exports = mongoose.model("Post", postSchema);
+var Post = mongoose.model("Post", postSchema);
+
+Post.findByGroup = function (groupId, cb) {
+  return this.model('Post').find({ group: groupName}, cb);
+}
+
+Post.findByUser = function (userId, cb) {
+  return this.model('Post').find({owner: userId})
+}
+
+module.exports = Post;
