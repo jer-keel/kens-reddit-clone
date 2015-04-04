@@ -1,7 +1,7 @@
 # MEAN Template
-This is a sample MEAN template for a generic web application that wants a robust
-frontend and an even more robust backend. This is an ongoing repository that will
-be routinely updated as new technologies arise and as I learn better practices.
+This is Ken's work for a reddit clone app. Get, post, update, and delete requests will 
+all be handled, according to the api. See api.txt for details about the api. Project is 
+built on a MEAN stack template, [here](https://github.com/jer-keel/MEAN-Template).
 
 ### Technologies
 The tech and instruments used in this project are as follows:
