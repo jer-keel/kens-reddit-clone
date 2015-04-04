@@ -204,6 +204,11 @@ router.post("/users", function(req, res, next) {
   });
 });
 
+router.post("/testPost", function(req, res, next) {
+  console.log("Post request to testPost");
+  res.sendStatus(200);
+})
+
 // ==========================================================
 //                        DELETE
 // ==========================================================

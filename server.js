@@ -22,6 +22,7 @@ var express        = require("express");
     cookieParser   = require("cookie-parser");
     methodOverride = require("method-override");
     mongoose       = require("mongoose");
+    request        = require("request");
 
 // =============================================================================
 // CONFIGURATIONS
@@ -84,6 +85,19 @@ app.use(passport.session());
 var dbConfig = require("./config/db.js");
 mongoose.connect(dbConfig.url);
 
+// Example for how to make post request
+request.post(
+  'http://localhost:3100/api/testPost',
+  { json: { key: 'value' } },
+  function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("Body: " + body);
+    }
+    if (error) {
+      console.log(error);
+    }
+  }
+);
 
 // =============================================================================
 // ROUTES
