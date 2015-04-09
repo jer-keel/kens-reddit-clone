@@ -30,7 +30,6 @@ var express        = require("express");
 
 // Configure passport, grab credentials
 var authConfig = require("./config/auth.js");
-    githubAuth = authConfig.githubAuth;
 
 // Allo passport to serialize and deserialize users
 passport.serializeUser(function(user, done) {
@@ -43,9 +42,9 @@ passport.deserializeUser(function(obj, done) {
 
 // Input whichever strategy you would like to use
 passport.use(new GitHubStrategy({
-    clientID: githubAuth.clientID,
-    clientSecret: githubAuth.clientSecret,
-    callbackURL: githubAuth.callbackURL
+    clientID: authConfig.clientID,
+    clientSecret: authConfig.clientSecret,
+    callbackURL: authConfig.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
@@ -68,7 +67,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(methodOverride());
 app.use(session({ 
-  secret: githubAuth.sessionSecret,
+  secret: authConfig.sessionSecret,
   resave: false,
   saveUninitialized: true
 }));

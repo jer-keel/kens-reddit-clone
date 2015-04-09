@@ -18,10 +18,10 @@ var Post = mongoose.model("Post", postSchema);
 
 Post.findByGroup = function (groupId, cb) {
   return this.model('Post').find({ group: groupName}, cb);
-}
+};
 
 Post.findByUser = function (userId, cb) {
-  return this.model('Post').find({owner: userId})
-}
+  return this.model('Post').find({owner: userId});
+};
 
 module.exports = Post;

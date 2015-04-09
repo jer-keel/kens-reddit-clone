@@ -22,7 +22,7 @@ app.controller("HomeController", ["$scope", "$location", "$http","$window",
       // Reroute to github authentication URL
       var newURL = "http://" + $location.$$host + ":" + $location.$$port + "/auth/github";
       $window.location.href = newURL;
-    }
+    };
 
     $scope.getUsers = function() {
       console.log("Making get request");
@@ -34,7 +34,7 @@ app.controller("HomeController", ["$scope", "$location", "$http","$window",
         error(function(data, status, headers, config) {
           console.log("Error, idk");
         });
-    }
+    };
   }
 ]);
 

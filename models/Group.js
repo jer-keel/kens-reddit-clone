@@ -21,6 +21,6 @@ var Group = mongoose.model("Group", groupSchema);
 
 Group.findByGroup = function (groupName, cb) {
   return this.model('User').find({ title: groupName}, cb);
-}
+};
 
 module.exports = Group;
