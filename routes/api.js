@@ -131,15 +131,15 @@ router.get("/g", function(req, res, next) {
 router.get("/g/groupname/:groupname", function(req, res, next) {
   Group.findByGroup(req.params.groupname, function(err, group){
     if (err) return next(err);
-    res.json(groups);
+    res.json(group);
   });
 });
 
 // GET /g/id/:id returns group of a given id
 router.get("/g/id/:id", function(req, res, next) {
-  Group.findByGroup(req.params.id, function(err, group){
+  Group.findById (req.params.id, function(err, group){
     if (err) return next(err);
-    res.json(groups);
+    res.json(group);
   });
 });
 

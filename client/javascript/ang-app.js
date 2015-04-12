@@ -6,41 +6,85 @@ app.config(["$routeProvider", "$locationProvider",
     $routeProvider.when("/", {
       templateUrl: "/html/partials/home.html",
       controller: "HomeController"
-    }).when("/profile", {
-      templateUrl: "/html/partials/profile.html",
-      controller:"ProfileController"
-    }).otherwise({
+    })
+    .when("/post/:id", {
+      templateUrl: "/html/partials/post.html",
+      controller: "PostController"
+    })
+    .when("/group/:id", {
+      templateUrl: "/html/partials/group.html",
+      controller: "GroupController"
+    })
+    .when("/user/:id", {
+      templateUrl: "/html/partials/user.html",
+      controller: "UserController"
+    })
+    .otherwise({
       redirectTo: "/"
     });
 }]);
 
 // This controll controls the home page!!!
-app.controller("HomeController", ["$scope", "$location", "$http","$window",
-  function($scope, $location, $http, $window) {
-    $scope.githubLogin = function() {
-      console.log($location.$$host);
-      // Reroute to github authentication URL
-      var newURL = "http://" + $location.$$host + ":" + $location.$$port + "/auth/github";
-      $window.location.href = newURL;
-    };
+app.controller("HomeController", ["$scope", "$location", "$http",
+  function($scope, $location, $http) {
+    $scope.groups = [];
+    $scope.posts = [];
+    $scope.users = [];
 
-    $scope.getUsers = function() {
-      console.log("Making get request");
-      $http.get('/api/users/username/jimbob').
-        success(function(data, status, headers, config) {
-          console.log(data);
-          $scope.username = data.username;
-        }).
-        error(function(data, status, headers, config) {
-          console.log("Error, idk");
-        });
-    };
+    $http.get("/api/g").success(function(data) {
+      $scope.groups = data;
+    });
+
+    $http.get("/api/p").success(function(data) {
+      $scope.posts = data;
+    });
   }
 ]);
 
-app.controller("ProfileController", ["$scope", "$location", "$http",
-  function($scope, $location, $http) {
+app.controller("PostController", ["$scope", "$routeParams", "$http",
+  function($scope, $routeParams, $http) {
+    $scope.post = {};
+    $scope.creator = {};
 
+    $http.get("/api/p/id/" + $routeParams.id).success(function(data) {
+      $scope.post = data;
+      $http.get("/api/m/id/" + $scope.post.owner).success(function(data) {
+        $scope.creator = data;
+      });
+    });
+  }
+]);
+
+app.controller("GroupController", ["$scope", "$routeParams", "$http",
+  function($scope, $routeParams, $http) {
+    $scope.group = {};
+    $scope.owner = {};
+
+    $http.get("/api/g/id/" + $routeParams.id).success(function(data) {
+      $scope.group = data;
+      //console.log(data);
+    });
+
+    $http.get("/api/m/username/" + $scope.group.owner).success(function(data) {
+      $scope.owner = data;
+    });
+  }
+]);
+
+app.controller("UserController", ["$scope", "$routeParams", "$http", 
+  function($scope, $routeParams, $http) {
+    $scope.user = {};
+    $scope.comments = [];
+    $scope.posts = [];
+
+    $http.get("/api/m/id/" + $routeParams.id).success(function(data) {
+      $scope.user = data;
+    });
+
+    $http.get("/api/p/userid/" + $routeParams.id).success(function(data) {
+      $scope.posts = data;
+      console.log(data);
+    });
   }
 ]);
 

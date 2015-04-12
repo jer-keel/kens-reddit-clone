@@ -11,7 +11,7 @@ var postSchema = new Schema({
   owner: String, 
   upvotes: [String], 
   downvotes: [String], 
-  created: Date
+  created: { type: Date, default: Date.now }
 });
 
 var Post = mongoose.model("Post", postSchema);

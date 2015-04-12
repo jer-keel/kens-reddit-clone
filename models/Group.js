@@ -14,7 +14,7 @@ var groupSchema = new Schema({
   owner: String, 
   upvotes: [String], 
   downvotes: [String], 
-  created: Date
+  created: { type: Date, default: Date.now }
 });
 
 var Group = mongoose.model("Group", groupSchema);

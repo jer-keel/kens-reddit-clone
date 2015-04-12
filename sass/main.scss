@@ -16,10 +16,26 @@ header {
 }
 
 p {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  line-height: 110%;
+  line-height: 100%;
   padding: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-color;
+  &:hover {
+    color: $secondary-color;
+  }
+  &:visited {
+    color: $third-color;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+strong {
+  font-weight: bold;
 }
 
 footer {
@@ -38,7 +54,8 @@ nav {
 }
 
 button {
-  font-size: 30px;
+  margin-top: 10px;
+  font-size: 15px;
   border-radius: 5px;
   background-color: $primary-color;
   border: none;
@@ -52,11 +69,9 @@ button {
 }
 
 .page-wrapper {
-  margin:auto;
-  width: 70%;
+  margin-right: 20px;
+  margin-left: 20px;
   font-family: $font-stack;
-  margin-top: 60px;
-  margin-bottom: 60px;
 }
 
 .main {
@@ -68,4 +83,16 @@ button {
   display: inline-block;
   width: 20%;
   vertical-align: top;
+}
+
+.post {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.post-title {
+  font-size: 20px;
+}
+
+.pull-right {
+  float:right;
 }

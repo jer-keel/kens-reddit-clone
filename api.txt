@@ -41,6 +41,9 @@ Returns all comments of a given post
 /p
 Returns all posts
 
+/p/id/:id
+Return a specific post
+
 /p/groupid/:groupid
 Returns all posts for a given group
 

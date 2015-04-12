@@ -1,0 +1,10 @@
+<h1>{{ user.username }}</h1>
+<h3>Comments:</h3>
+<p ng-repeat="comment in comments">
+  {{ comment.text }}
+</p>
+<h3>Posts</h3>
+<p ng-repeat="post in posts">
+  {{ post.title }}
+</p>
+<a href="/#/"><button type="button">Back</button></a>

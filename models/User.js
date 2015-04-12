@@ -13,7 +13,7 @@ var userSchema = new Schema({
   salt: String,
   posts: [String],
   comments: [String],
-  created: Date,
+  created: { type: Date, default: Date.now },
   admin_on: [String],
   member_of: [String]
 });
