@@ -45,12 +45,17 @@ app.controller("PostController", ["$scope", "$routeParams", "$http",
   function($scope, $routeParams, $http) {
     $scope.post = {};
     $scope.creator = {};
+    $scope.comments = [];
 
     $http.get("/api/p/id/" + $routeParams.id).success(function(data) {
       $scope.post = data;
       $http.get("/api/m/id/" + $scope.post.owner).success(function(data) {
         $scope.creator = data;
       });
+    });
+
+    $http.get("/api/c/postid/" + $routeParams.id).success(function(data) {
+      $scope.comments = data;
     });
   }
 ]);

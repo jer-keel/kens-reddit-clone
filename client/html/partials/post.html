@@ -1,3 +1,5 @@
 <h1>{{post.title}}</h1>
 <p>by {{ creator.username }}</p>
+<h3>Comments:</h3>
+<p ng-repeat="comment in comments">{{ comment.text }}</p>
 <a href="/#/"><button type="button">Back</button></a>
