@@ -85,12 +85,18 @@ app.use(passport.session());
 var dbConfig = require("./config/db.js");
 mongoose.connect(dbConfig.url);
 
+var testComment = {
+  user: "5529b8e689a576ec759eac58",
+  post: "5529b8e689a576ec759eac5a",
+  text: "TESTING COMMENT POST",
+};
 // Example for how to make post request
 request.post(
-  'http://localhost:3100/api/testPost',
-  { json: { key: 'value' } },
+  'http://localhost:3100/api/c',
+  {form: testComment},
   function (error, response, body) {
-    if (!error && response.statusCode == 200) {
+    if (!error) {
+      console.log("Response: " + response);
       console.log("Body: " + body);
     }
     if (error) {

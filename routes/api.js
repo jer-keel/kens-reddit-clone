@@ -197,8 +197,47 @@ router.get("/c/postid/:postid", function(req, res, next) {
 // ==========================================================
 
 // POST /api/users create a new user in the database
-router.post("/users", function(req, res, next) {
+router.post("/m", function(req, res, next) {
   User.create(req.body, function(err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+// POST /api/users create a new user in the database
+router.post("/g", function(req, res, next) {
+  Group.create(req.body, function(err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
+// POST /api/users create a new group in the database
+router.post("/c", function(req, res, next) {
+  var tempid;
+  console.log(req.body);
+  Comment.create(req.body, function(err, comment) {
+    // console.log("Comment Callback");
+    if (err) return next(err);
+    res.json(comment);
+    tempid = comment._id;
+    var userid = req.body.user;
+    console.log("TEMPID IS STILL " + tempid);
+    User.update({_id: userid},{ $push: {comments: tempid}}, function(err){
+      // console.log("User Callback");
+      if (err) return next(err);
+    });
+    var postid = req.body.post;
+    Post.update({_id: postid},{ $push: {comments: tempid}}, function(err){
+      // console.log("Post Callback");
+      if (err) return next(err);
+    }); 
+  });   
+});
+
+// POST /api/users create a new group in the database
+router.post("/p", function(req, res, next) {
+  Post.create(req.body, function(err, post) {
     if (err) return next(err);
     res.json(post);
   });
