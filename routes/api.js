@@ -21,33 +21,28 @@ var randStr = function(length){
     //console.log(str);
   }
   return str;
-}
+};
 
 var generateTestData = function(amount){
+  var output_func = function(err, data) {
+    if (err) console.log(err);
+    console.log(data);
+  };
   for (var i = 0; i < amount; i++){
     var user = new User({username: randStr(10)});
     var comment = new Comment({text: randStr(20)});
     var post = new Post({title: randStr(10)});
     user.comments.push(comment._id);
-    user.posts.push(post._id)
+    user.posts.push(post._id);
     comment.user = user._id;
     comment.post = post._id;
     post.comments.push(comment._id);
     post.owner = user._id;
-    User.create(user, function(err, post){
-      if (err) console.log(err);
-      console.log(post);
-    });
-    Post.create(post, function(err, post){
-      if (err) console.log(err);
-      console.log(post);
-    });
-    Comment.create(comment, function(err, post){
-      if (err) console.log(err);
-      console.log(post);
-    });
+    User.create(user, output_func);
+    Post.create(post, output_func);
+    Comment.create(comment, output_func);
   }
-}
+};
 
 // ==========================================================
 //                            GET
@@ -246,7 +241,7 @@ router.post("/p", function(req, res, next) {
 router.post("/testPost", function(req, res, next) {
   console.log("Post request to testPost");
   res.sendStatus(200);
-})
+});
 
 // ==========================================================
 //                        DELETE

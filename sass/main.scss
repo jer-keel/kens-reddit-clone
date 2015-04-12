@@ -11,27 +11,8 @@ h3 {
   font-size: 30px;
 }
 
-.page-wrapper {
-  margin:auto;
-  width: 70%;
-  font-family: $font-stack;
-  margin-top: 60px;
-  margin-bottom: 60px;
-}
-
 header {
   text-align: center;
-}
-
-.main {
-  display: inline-block;
-  width: 79%;
-}
-
-.sidebar {
-  display: inline-block;
-  width: 20%;
-  vertical-align: top;
 }
 
 p {
@@ -48,19 +29,12 @@ footer {
     margin-left: 10px;
   }
 }
+
 nav {
   margin-top: 20px;
   li {
     margin-bottom: 20px;
   }
-}
-
-body {
-  background-color: lavender;
-}
-
-.buttons {
-  margin-top: 20px;
 }
 
 button {
@@ -75,4 +49,23 @@ button {
     cursor: pointer;
     background-color: $secondary-color;
   }
+}
+
+.page-wrapper {
+  margin:auto;
+  width: 70%;
+  font-family: $font-stack;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.main {
+  display: inline-block;
+  width: 79%;
+}
+
+.sidebar {
+  display: inline-block;
+  width: 20%;
+  vertical-align: top;
 }
