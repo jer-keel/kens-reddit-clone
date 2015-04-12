@@ -95,6 +95,14 @@ router.get("/p", function(req, res, next) {
   });
 });
 
+router.get("/p/id/:id", function(req, res, next) {
+  // console.log("Called from posts");
+  Post.findById(req.params.id, function(err, users){
+    if (err) return next(err);
+    res.json(users);
+  });
+});
+
 router.get("/p/groupid/:groupid", function(req, res, next) {
   Post.findByGroup(req.params.groupid, function(err, posts){
     if (err) return next(err);
